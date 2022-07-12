@@ -12,9 +12,8 @@ export const appState = defineStore('app', () => {
 	const showTabs = ref<boolean>(false);
 	const menuList = ref<any[]>([]);
 
-
 	function setIsCollapse(bol: boolean) {
-		console.error('bol', bol)
+		// console.error('bol', bol)
 		isCollapse.value = bol
 	}
 

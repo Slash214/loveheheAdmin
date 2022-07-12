@@ -33,7 +33,7 @@ router.beforeEach((to, _from, next) => {
     // 设置页面标题
 	NProgress.start()
 	document.title = (to.meta.title as string) || import.meta.env.BASE_URL
-    if (1) {
+    if (userToken) {
         if (to.path === '/login') {
             next('/')
             return

@@ -4,7 +4,6 @@ import '@/icons/iconfont.js'
 import 'element-plus/dist/index.css'
 import './styles/index.scss'
 import '@/theme/index.scss'
-import 'uno.css'
 import router from './router'
 import { createPinia } from 'pinia'
 

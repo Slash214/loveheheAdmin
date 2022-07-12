@@ -1,23 +1,24 @@
 <template>
-  <header class="flex justify-between h60">
-    <div class="left-box flex">
+  <header>
+    <div class="left-box">
       <div class="menu-icon" @click="changeState">
-        <SvgIcon size="28" :name="isCollapse ? 'icon-caidanzhankai' : 'icon-caidanshouqi'" />
+        <SvgIcon size="20" :name="isCollapse ? 'icon-caidanzhankai' : 'icon-caidanshouqi'" />
       </div>
-	  <Breadcrumb />
+      <div>
+        <Breadcrumb />
+      </div>
     </div>
     <div class="right-box">123</div>
   </header>
 </template>
 
 <script setup lang="ts">
-import Breadcrumb from "@/layout/Header/Breadcrumb.vue";
+import Breadcrumb from "@/layout/Header/Breadcrumb.vue"
 
 import { appState } from "@/store/app"
 import { computed } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import { storeToRefs } from "pinia"
-
 
 const { isCollapse } = storeToRefs(appState())
 
@@ -32,11 +33,17 @@ header {
   background-color: #fff;
   padding: 0 15px;
   align-items: center;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
   .left-box {
-	.menu-icon {
-		color: #bbb;
-		cursor: pointer;
-	}
+    align-items: center;
+    display: flex;
+    .menu-icon {
+      color: #bbb;
+      cursor: pointer;
+      margin-right: 10px;
+    }
   }
 }
 </style>
