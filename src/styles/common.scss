@@ -1,0 +1,25 @@
+html {
+	font-size: 4px;
+}
+
+html,body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background-color: #f5f6fb;
+	margin: 0;
+	padding: 0;
+	font-family: 'Encode Sans Condensed', sans-serif;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	background-color: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #c1c1c1;
+	&:hover {
+		background-color: #a8a8a8;
+	}
+}
