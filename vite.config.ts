@@ -31,6 +31,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3100,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/styles/index.scss";`,
+        javascriptEnbled: true
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': pathReslove('./src'),

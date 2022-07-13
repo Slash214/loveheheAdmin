@@ -6,7 +6,7 @@ const System: Array<RouteRecordRaw> = [
 		path: '/system',
 		component: Layout,
 		redirect: '/404',
-		meta: { title: '系统目录' },
+		meta: { title: '系统目录', showMenu: true, icon: '' },
 		children: [
 			{
 				path: '/404',
@@ -18,7 +18,7 @@ const System: Array<RouteRecordRaw> = [
 	{
 		path: '/login',
 		name: 'login',
-		meta: { title: '登陆页面', icon: '' },
+		meta: { title: '登陆页面', icon: '', showMenu: false },
 		component: () => import('views/system/login.vue')
 	},
 ]

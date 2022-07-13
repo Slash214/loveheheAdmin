@@ -6,12 +6,11 @@ const asyncRoutes: Array<RouteRecordRaw> = [
 		path: '/',
 		component: Layout,
 		redirect: '/dashboard',
-		meta: { name: '', len: 1 },
+		meta: { title: '首页', showMenu: true, icon: '' },
 		children: [
 			{
 				path: '/dashboard',
-				name: 'dashboard',
-				meta: { title: '首页', keepAlive: false, icon: 'HomeFilled' },
+				meta: { title: 'dashboard', keepAlive: false, icon: 'HomeFilled' },
 				component: () => import('views/home/index.vue')
 			}
 		]

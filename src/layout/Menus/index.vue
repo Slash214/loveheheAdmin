@@ -1,56 +1,40 @@
 <template>
   <el-scrollbar>
-    <el-menu
-      class="layout-menu system-scrollbar"
-      background-color="var(--system-menu-background)"
-      text-color="var(--system-menu-text-color)"
-      active-text-color="var(--system-primary-color)"
-      default-active="2"
-      @open="handleOpen"
-      @close="handleClose"
+    <el-menu router class="layout-menu" 
+    :collapse="isCollapse" 
+    :collapse-transition="false"
+    :default-active="activeMenu"
     >
-      <el-sub-menu index="1">
-        <template #title>
-          <SvgIcon size="24" name="icon-shouye"></SvgIcon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group title="Group One">
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item one</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title>item four</template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <SvgIcon size="24" name="icon-shouye"></SvgIcon>
-        <span>Navigator Two</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <SvgIcon size="24" name="icon-shezhi"></SvgIcon>
-        <span>Navigator Three</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <SvgIcon size="24" name="icon-shouye"></SvgIcon>
-        <span>Navigator Four</span>
-      </el-menu-item>
+      <menu-item :class="isCollapse ? 'menuItems' : '' " v-for="(item, key) in allRoutes" :menu="item" :key="key" />
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script setup lang="ts">
-import SvgIcon from "@/components/SvgIcon/index.vue"
-// import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue"
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+import MenuItem from "./MenuItem.vue"
+import { useRoute, useRouter } from "vue-router"
+import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue"
+import { storeToRefs } from "pinia"
+import { appState } from "@/store/app"
+import { computed } from "vue"
+const { isCollapse } = storeToRefs(appState())
+
+const router = useRouter()
+const route = useRoute()
+
+console.error(router.options.routes)
+const allRoutes = router.options.routes.filter((e: any) => {
+  return e.meta.showMenu
+})
+
+const activeMenu = computed(() => {
+  const { meta, path } = route
+  if (meta.activeMenu) return meta.activeMenu
+  return path
+})
+
+
+console.error("allRoutes", allRoutes)
 </script>
 
 <style scoped lang="scss">
@@ -58,6 +42,7 @@ const handleClose = (key: string, keyPath: string[]) => {
   background-color: #fff;
   border: 1px solid #eaf0f1;
   border-top: none;
+  border-left: none;
 }
 .layout-menu {
   width: 100%;
@@ -101,6 +86,7 @@ const handleClose = (key: string, keyPath: string[]) => {
       }
       .el-menu-item {
         background-color: var(--system-menu-children-background) !important;
+        justify-content: center;
         &.is-active {
           background-color: var(--system-primary-color) !important;
           color: var(--system-primary-text-color) !important;
@@ -122,6 +108,9 @@ const handleClose = (key: string, keyPath: string[]) => {
         }
       }
     }
+  }
+  .menuItems {
+    justify-content: center;
   }
 }
 </style>

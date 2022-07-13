@@ -42,7 +42,7 @@ header {
     .menu-icon {
       color: #bbb;
       cursor: pointer;
-      margin-right: 10px;
+      margin-right: 20px;
     }
   }
 }
