@@ -1,5 +1,5 @@
 html {
-	font-size: 4px;
+	font-size: 16px;
 }
 
 html,body {
@@ -24,3 +24,39 @@ html,body {
 	}
 }
 
+.flex { display: flex; flex-direction: row; }
+.flex-column { display: flex; flex-direction: column; }
+.ju { justify-content: space-between; }
+
+
+@mixin text-hidden($clamp: 1) {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	word-break: break-all;
+	-webkit-line-clamp: $clamp;
+	-webkit-box-orient: vertical;
+}
+
+
+@mixin flex ($al: false, $jc: false, $row: row){
+	display: flex;
+	flex-direction: $row;
+	@if ($al) { align-items: $al; }
+	@if ($jc) { justify-content: $jc; }
+}
+
+@mixin font ($size: false, $color: false, $weight: false, $lineHeight: 1.3) {
+	@if ($size) {
+		font-size: $size;
+	}
+	@if ($color) {
+		color: $color;
+	}
+	@if ($weight) {
+		font-weight: $weight;
+	}
+	@if ($lineHeight) {
+		line-height: $lineHeight;
+	}
+}

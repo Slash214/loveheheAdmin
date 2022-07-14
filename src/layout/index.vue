@@ -1,9 +1,6 @@
 <template>
   <el-container style="height: 100vh">
-    <el-aside 
-	:width="isCollapse ? '60px' : '220px'"
-	:class="isCollapse ? 'hide-aside' : 'show-side'"
-	>
+    <el-aside :width="isCollapse ? '60px' : '220px'" :class="isCollapse ? 'hide-aside' : 'show-side'">
       <div class="logo">LOGO</div>
       <Menus />
     </el-aside>
@@ -11,7 +8,7 @@
       <el-header>
         <Headers />
       </el-header>
-	  <Tabs />
+      <Tabs />
       <el-main>
         <router-view v-slot="{ Component, route }">
           <transition :name="route.meta.transition || 'fade-transform'" mode="out-in">
@@ -26,12 +23,13 @@
 <script setup lang="ts">
 import Menus from "./Menus/index.vue"
 import Headers from "@/layout/Header/index.vue"
-import Tabs from './Tabs/index.vue'
+import Tabs from "./Tabs/index.vue"
 
 import { appState } from "@/store/app"
-
 import { storeToRefs } from "pinia"
 const { isCollapse } = storeToRefs(appState())
+
+
 </script>
 
 <style scoped lang="scss">
@@ -43,7 +41,7 @@ const { isCollapse } = storeToRefs(appState())
 .el-aside {
   display: flex;
   flex-direction: column;
-  transition: .2s;
+  transition: 0.2s;
   overflow-x: hidden;
   transition: 0.3s;
   &::-webkit-scrollbar {
@@ -56,7 +54,7 @@ const { isCollapse } = storeToRefs(appState())
     display: flex;
     align-items: center;
     justify-content: center;
-	border-right: 1px solid #eaf0f1;
+    border-right: 1px solid #eaf0f1;
   }
 }
 .el-main {

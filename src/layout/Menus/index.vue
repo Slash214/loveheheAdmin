@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import MenuItem from "./MenuItem.vue"
 import { useRoute, useRouter } from "vue-router"
-import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue"
 import { storeToRefs } from "pinia"
 import { appState } from "@/store/app"
 import { computed } from "vue"
@@ -55,6 +54,10 @@ console.error("allRoutes", allRoutes)
     .el-sub-menu {
       background-color: var(--system-menu-background) !important;
     }
+    .el-menu-item,
+    .el-sub-menu {
+      background-color: var(--system-menu-background) !important;
+    }
     .el-menu-item i,
     .el-menu-item-group__title,
     .el-sub-menu__title i {
@@ -63,18 +66,18 @@ console.error("allRoutes", allRoutes)
     .el-menu-item,
     .el-sub-menu__title {
       &.is-active {
-        background-color: var(--system-primary-color) !important;
-        color: var(--system-primary-text-color) !important;
+        background-color: var(--system-menu-active-background) !important;
+        color: var(--system-menu-text-color) !important;
         i {
           color: var(--system-primary-text-color) !important;
         }
         &:hover {
-          background-color: var(--system-primary-color) !important;
-          color: var(--system-primary-text-color) !important;
+          background-color: var(--system-menu-active-background) !important;
+          color: var(--system-menu-text-color) !important;
         }
       }
       &:hover {
-        background-color: var(--system-menu-hover-background) !important;
+        background-color: var(--system-menu-active-background) !important;
       }
     }
     .el-sub-menu {
@@ -86,13 +89,12 @@ console.error("allRoutes", allRoutes)
       }
       .el-menu-item {
         background-color: var(--system-menu-children-background) !important;
-        justify-content: center;
         &.is-active {
-          background-color: var(--system-primary-color) !important;
-          color: var(--system-primary-text-color) !important;
+          background-color: var(--system-menu-active-background) !important;
+          color: var(--system-menu-text-color) !important;
           &:hover {
-            background-color: var(--system-primary-color) !important;
-            color: var(--system-primary-text-color) !important;
+            background-color: var(----system-menu-hover-background) !important;
+            color: var(--system-menu-text-color) !important;
           }
         }
         &:hover {
@@ -109,8 +111,6 @@ console.error("allRoutes", allRoutes)
       }
     }
   }
-  .menuItems {
-    justify-content: center;
-  }
+
 }
 </style>

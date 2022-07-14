@@ -5,7 +5,7 @@
         :list="val"
         v-for="(val, key) of state.menuList"
         :key="key"
-        :active="activeMenu.path === val.path"
+        :active="activeMenu.path == val.path"
         @reload="pageReload"
         @close="delMenu(val)"
       />
@@ -20,7 +20,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item class="tab" :icon="RefreshLeft" @click="pageReload">刷新当前标签</el-dropdown-item>
+            <!-- <el-dropdown-item class="tab" :icon="RefreshLeft" @click="pageReload">刷新当前标签</el-dropdown-item> -->
             <el-dropdown-item :icon="CircleClose" @click="currentDisabled">关闭当前路由</el-dropdown-item>
             <el-dropdown-item :icon="CircleClose" :disabled="state.menuList.length < 3" @click="closeOtherRoute"
               >关闭其他路由</el-dropdown-item
@@ -45,6 +45,7 @@ import { useRoute, useRouter } from "vue-router"
 
 const router = useRouter()
 const route = useRoute()
+
 const state = reactive({
   scrollLeft: <number>0,
   scrollbarDom: <typeof ElScrollbar | null>null,
@@ -61,12 +62,13 @@ onMounted(() => {
     addMenu(defaultMenu)
   }
 
-  addMenu(route)
-  initMenu(route)
+  console.warn("activeMenu", activeMenu)
 })
+
 watch(state.menuList, (newVal: []) => {
   tabsHook.setItem(newVal)
 })
+
 router.afterEach(() => {
   addMenu(route)
   initMenu(route)
@@ -106,6 +108,8 @@ const delMenu = (menu: any) => {
 
 const initMenu = (menu: any) => {
   activeMenu = menu
+  console.error("activeMenu", activeMenu.path)
+  console.error("state.menuList.", state.menuList)
   nextTick(() => {
     setPosition()
   })
@@ -149,9 +153,10 @@ const handleScroll = ({ scrollLeft: left }: { scrollLeft: number }) => {
 
 // 当前页面组件 刷新
 const pageReload = () => {
-  const self: any = route.matched[route.matched.length - 1].instances.default
-  console.error("self", self)
-  self.handleReload()
+  console.log('路由刷新，暂不处理')
+  // const self: any = route.matched[route.matched.length - 1].instances.default
+  // 刷新路由方法
+  // self.handleReload()
 }
 
 // 关闭当前标签，首页不关闭
@@ -173,6 +178,10 @@ const closeAllRoute = () => {
   state.menuList = [defaultMenu]
   router.push(defaultMenu.path)
 }
+
+// 初始化最底下更新
+addMenu(route)
+initMenu(route)
 </script>
 
 <style scoped lang="scss">
@@ -184,7 +193,7 @@ const closeAllRoute = () => {
   background-color: $white;
   border-top: 1px solid #eaf0f1;
   border-bottom: 1px solid #eaf0f1;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
   .scrollbar-container {
     width: 90%;
     white-space: nowrap;

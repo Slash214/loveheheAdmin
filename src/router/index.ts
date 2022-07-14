@@ -2,13 +2,14 @@
 
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router'
 import NProgress from '@/utils/nprogress'
-import {  System, Dashboard, Demo } from './models'
+import {  System, Dashboard, Demo, AsyncRooutes } from './models'
 
 
 const routes: Array<RouteRecordRaw> = [
     ...Dashboard,
     ...System,
-    ...Demo
+    ...Demo,
+    ...AsyncRooutes
 ]
 
 const router: Router = createRouter({
@@ -21,7 +22,7 @@ const router: Router = createRouter({
 const whiteList = ['/login']
 
 // 获取本地token判断是否已登陆
-const userToken = localStorage.getItem('token') || ''
+const userToken = localStorage.getItem('lovehehe_Token') || ''
 
 /**
  * @description: 全局路由前置守卫，在进入路由前触发，导航在所有守卫 resolve 完之前一直处于等待中。

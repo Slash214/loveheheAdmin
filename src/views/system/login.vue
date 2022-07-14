@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue"
+import userHook from '@/hooks/user'
 
 const username = ref<string>("")
 const password = ref<string>("")
@@ -32,9 +33,12 @@ const sumbit = () => {
     console.log('sumit')
 	if (!username.value || !password.value) return
 
-	if (username.value === 'super' && password.value === '123456') {
-		window.localStorage.setItem('token', '$$$$$$$TOKEN$$$$$$$')
-		console.log('登录')
+  if (username.value === 'super' && password.value === '123456') {
+    userHook.setToken('$$$$$$$TOKEN$$$$$$$')
+    userHook.setUser({
+      avatar: 'http://img.pinkyang.cn/2021.06.20-myhead.jpg',
+      nickname: '爱呵呵'
+    })
 		location.reload()
 	}
 }

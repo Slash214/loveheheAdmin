@@ -6,7 +6,7 @@ const Demo: Array<RouteRecordRaw> = [
 		path: '/demo',
 		component: Layout,
 		redirect: '/demo1',
-		meta: { title: '测试Demo', showMenu: true, icon: '' },
+		meta: { title: '测试Demo', showMenu: true, icon: 'icon-faxian' },
 		children: [
 			{
 				path: '/demo1',

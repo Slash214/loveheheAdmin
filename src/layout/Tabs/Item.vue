@@ -7,7 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { RefreshRight, Close } from '@element-plus/icons-vue'
+import { RefreshRight, Close } from "@element-plus/icons-vue"
+import { onMounted } from "vue";
 
 const props = defineProps({
   list: {
@@ -20,16 +21,19 @@ const props = defineProps({
   },
 })
 
-const emits = defineEmits(['reload', 'close'])
+const emits = defineEmits(["reload", "close"])
+
+onMounted(() => {
+  console.error('直接拉满', props.active)
+})
 
 const reload = () => {
-	emits('reload')
+  emits("reload")
 }
 
 const closeTab = () => {
-	emits('close')
+  emits("close")
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -55,9 +59,8 @@ const closeTab = () => {
     margin-right: 15px;
   }
   &.active {
-	background-color: #000;
-    // background: var(--system-primary-color);
-    border-color: var(--system-primary-color);
+    background-color: #000;
+    background: var(--system-primary-color);
     color: var(--system-primary-text-color);
     a {
       color: var(--system-primary-text-color);
@@ -69,5 +72,9 @@ const closeTab = () => {
   &:hover {
     background-color: var(--system-header-item-hover-color);
   }
+}
+.active {
+  background: var(--system-primary-color);
+  color: var(--system-primary-text-color);
 }
 </style>
