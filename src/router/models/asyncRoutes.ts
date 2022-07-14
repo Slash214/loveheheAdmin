@@ -20,6 +20,32 @@ const AsyncRooutes: Array<RouteRecordRaw> = [
 			},
 		]
 	},
+	{
+		path: '/type',
+		component: Layout,
+		redirect: '/tag',
+		meta: { title: '软件属性管理', showMenu: true,  icon: 'icon-shoucang' },
+		children: [
+			{
+				path: '/tag',
+				meta: { title: '标签管理'  },
+				component: () => import('views/MenuAndTag/index.vue')
+			}
+		]
+	},
+	{
+		path: '/banner',
+		component: Layout,
+		redirect: '/image',
+		meta: { title: 'Banner', showMenu: true,  icon: 'icon-tupian' },
+		children: [
+			{
+				path: '/image',
+				meta: { title: '轮播图'  },
+				component: () => import('views/banner/index.vue')
+			}
+		]
+	}
 
 ]
 

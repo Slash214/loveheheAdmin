@@ -11,9 +11,9 @@
       <Tabs />
       <el-main>
         <router-view v-slot="{ Component, route }">
-          <transition :name="route.meta.transition || 'fade-transform'" mode="out-in">
+          <!-- <transition  mode="out-in"> -->
             <component :is="Component" :key="route.fullPath" />
-          </transition>
+          <!-- </transition> -->
         </router-view>
       </el-main>
     </el-container>
@@ -61,6 +61,7 @@ const { isCollapse } = storeToRefs(appState())
   height: 100%;
   padding: 0;
   overflow-x: hidden;
+  margin: 20px;
 }
 .el-main-box {
   width: 100%;
