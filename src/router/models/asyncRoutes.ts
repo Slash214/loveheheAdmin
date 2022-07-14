@@ -45,6 +45,19 @@ const AsyncRooutes: Array<RouteRecordRaw> = [
 				component: () => import('views/banner/index.vue')
 			}
 		]
+	},
+	{
+		path: '/website',
+		component: Layout,
+		redirect: '/hot',
+		meta: { title: '网站', showMenu: true,  icon: 'icon-tupian' },
+		children: [
+			{
+				path: '/hot',
+				meta: { title: '热门网站'  },
+				component: () => import('views/hotWebsite/index.vue')
+			}
+		]
 	}
 
 ]

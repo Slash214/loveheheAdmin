@@ -1,7 +1,7 @@
 <template>
   <div class="tags-view-item" :class="active ? 'active' : ''">
     <router-link tag="a" :to="list.path"> {{ list.meta.title }} </router-link>
-    <el-icon @click.stop="reload" v-if="active"><refresh-right /></el-icon>
+    <!-- <el-icon @click.stop="reload" v-if="active"><refresh-right /></el-icon> -->
     <el-icon @click.stop="closeTab" v-if="!list.meta.hideClose" alt="删除标签"><close /></el-icon>
   </div>
 </template>

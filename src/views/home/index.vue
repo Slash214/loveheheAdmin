@@ -23,7 +23,7 @@
 .card {
   border: 1px solid $line;
   background-color: $white;
-  border-radius: $br_m;
+  border-radius: $br_s;
   padding: 1.25rem;
   margin-bottom: 1.25rem;
   @include flex(center);
