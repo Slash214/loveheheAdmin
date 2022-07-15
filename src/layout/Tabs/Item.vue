@@ -23,10 +23,6 @@ const props = defineProps({
 
 const emits = defineEmits(["reload", "close"])
 
-onMounted(() => {
-  console.error('直接拉满', props.active)
-})
-
 const reload = () => {
   emits("reload")
 }

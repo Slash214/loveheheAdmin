@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "md-editor-v3": "^2.2.1",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -39,6 +40,7 @@
     "unplugin-vue-components": "^0.21.1",
     "vite": "^2.9.9",
     "vite-plugin-svg-icons": "^2.0.1",
+    "vue-cropper": "^1.0.4",
     "vue-router": "^4.1.2",
     "vue-tsc": "^0.34.7"
   }

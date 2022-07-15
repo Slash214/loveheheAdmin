@@ -20,16 +20,21 @@
           <el-option v-for="item in softTag" :key="item.id" :label="item.name" :value="item.name" />
         </el-select>
       </el-form-item>
-      <el-form-item label="图片上传"> 是的 </el-form-item>
+      <el-form-item label="图片上传">  
+         <Upload />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm">增加</el-button>
       </el-form-item>
     </el-form>
+
+    <Cropper />
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive } from "vue"
+
 
 const table = reactive({
   title: <string>"",

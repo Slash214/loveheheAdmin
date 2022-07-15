@@ -18,6 +18,11 @@ const AsyncRooutes: Array<RouteRecordRaw> = [
 				component: () => import('@/views/soft/create.vue'),
 				meta: { title: '创建软件文章',  }
 			},
+			{
+				path: '/detail',
+				component: () => import('@/views/soft/detail.vue'),
+				meta: { title: '文章详情',  }
+			},
 		]
 	},
 	{
