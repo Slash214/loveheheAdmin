@@ -16,9 +16,11 @@
     "paths": {
       "@/*": ["src/*"],
       "assets/*": ["src/assets/*"],
+      "views/*": ["src/views/*"]
     },
+    "types": ["vite/client", "element-plus/global"]
   },
   "exclude": ["node_modules", "dist"],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  // "references": [{ "path": "./tsconfig.node.json" }]
 }

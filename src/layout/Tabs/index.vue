@@ -47,8 +47,8 @@ const router = useRouter()
 const route = useRoute()
 
 const state = reactive({
-  scrollLeft: <number>0,
-  scrollbarDom: <typeof ElScrollbar | null>null,
+  scrollLeft: 0,
+  scrollbarDom: null,
   menuList: tabsHook.getItem(),
 })
 const defaultMenu = {
@@ -62,7 +62,7 @@ onMounted(() => {
     addMenu(defaultMenu)
   }
 
-  console.warn("activeMenu", activeMenu)
+  // console.warn("activeMenu", activeMenu)
 })
 
 watch(state.menuList, (newVal: []) => {
@@ -92,7 +92,7 @@ const addMenu = (menu: any) => {
 }
 
 const delMenu = (menu: any) => {
-  console.warn("触犯了删除")
+  console.warn("触发了删除")
   let index = 0
   if (!menu.meta.hideClose) {
     // if (menu.meta.cache && menu.name) {
@@ -108,8 +108,8 @@ const delMenu = (menu: any) => {
 
 const initMenu = (menu: any) => {
   activeMenu = menu
-  console.error("activeMenu", activeMenu.path)
-  console.error("state.menuList.", state.menuList)
+  // console.error("activeMenu", activeMenu.path)
+  // console.error("state.menuList.", state.menuList)
   nextTick(() => {
     setPosition()
   })

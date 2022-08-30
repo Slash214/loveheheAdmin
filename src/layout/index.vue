@@ -11,9 +11,7 @@
       <Tabs />
       <el-main>
         <router-view v-slot="{ Component, route }">
-          <!-- <transition  mode="out-in"> -->
-            <component :is="Component" :key="route.fullPath" />
-          <!-- </transition> -->
+          <component :is="Component" :key="route.fullPath" />
         </router-view>
       </el-main>
     </el-container>

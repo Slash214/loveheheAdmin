@@ -21,9 +21,9 @@ const { isCollapse } = storeToRefs(appState())
 const router = useRouter()
 const route = useRoute()
 
-console.error(router.options.routes)
+// console.error(router.options.routes)
 const allRoutes = router.options.routes.filter((e: any) => {
-  return e.meta.showMenu
+  return e.meta.showMenu && e.path !== '/xq'
 })
 
 const activeMenu = computed(() => {
@@ -33,7 +33,7 @@ const activeMenu = computed(() => {
 })
 
 
-console.error("allRoutes", allRoutes)
+// console.error("allRoutes", allRoutes)
 </script>
 
 <style scoped lang="scss">

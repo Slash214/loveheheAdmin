@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import Breadcrumb from "@/layout/Header/Breadcrumb.vue"
 import { appState } from "@/store/app"
-import { computed, onMounted, reactive, ref } from "vue"
+import { onMounted } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue"
 import { storeToRefs } from "pinia"
 import Avatar from "@/layout/Header/avatar.vue"

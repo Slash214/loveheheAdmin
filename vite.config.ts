@@ -17,7 +17,9 @@ export default defineConfig({
       iconDirs: [pathReslove('./src/icons/svg')],
       symbolId: '[name]'
     }),
-    AutoImport(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),  
     Components({
       resolvers: [ElementPlusResolver()],
       dirs: ['src/components'],

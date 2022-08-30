@@ -18,7 +18,7 @@ onMounted(() => {
 const getBreadcrumb = () => {
   let matched = route.matched.filter(item => item.meta && item.meta.title)
   levleList.value = matched
-  console.warn('matched', matched)
+  // console.warn('matched', matched)
 }
 
 watch(

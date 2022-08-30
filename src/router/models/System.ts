@@ -21,6 +21,11 @@ const System: Array<RouteRecordRaw> = [
 		meta: { title: '登陆页面', icon: '', showMenu: false },
 		component: () => import('views/system/login.vue')
 	},
+	{
+		path: '/:pathMatch(.*)',
+		meta: {},
+		redirect: '/404',
+	  },
 ]
 
 export default System

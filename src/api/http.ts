@@ -1,9 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { ElMessage } from 'element-plus'
 
+
+const baseURL = import.meta.env.VITE_BASE_URL
+
 // 创建实例
 const service: AxiosInstance = axios.create({
-    baseURL: '',
+    baseURL,
     timeout: 1000 * 60 * 30,
     headers: {
         'Content-Type': 'application/json'
