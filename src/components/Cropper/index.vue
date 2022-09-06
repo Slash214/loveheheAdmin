@@ -130,17 +130,21 @@ const saveAsModel = async () => {
   // 2. 进行图片上传，并拿到上传后的地址，暂时省略
   let data = new FormData()
   data.append('file', file)
-  const result = await axios.post('https://lovehaha.cn/api/qiniu', data, {
+  // https://lovehaha.cn/api/qiniu
+  // http://yjpsix.com/img/qiniu
+  const result = await axios.post('https://yjpsix.com/img/qiniu', data, {
     headers: { 'Contnet-Type': 'multipart/form-data' }
   })
 
-  if (result?.data?.state === 'success') {
+  let { data: { data: { url = '' } }} = result
+  console.log(result)
+  if (url) {
     console.log('上传成功')
     result.data.data.url
-    console.log('url', result.data.data.url)
+    console.log('url', url)
     isvisible.value = false
     ElMessage.success('上传成功')
-    emits('uploadSuccess', result.data.data.url)
+    emits('uploadSuccess', url)
   } else {
     isvisible.value = false
     ElMessage.success('上传失败') 

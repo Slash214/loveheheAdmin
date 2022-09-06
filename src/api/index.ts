@@ -1,6 +1,15 @@
 import { websites } from '@/typings'
 import request from './http'
 
+
+export const adminLogin = (data: { username: string, password: string }) => {
+	return request({
+		url: '/user/login',
+		method: 'POST',
+		data
+	})
+}
+
 export const getSoftList = (params: {pageSize: number, pageIndex:number}) => {
 	return request({
 		url: '/software/list',
@@ -101,5 +110,34 @@ export const updateSoftDetail = (data: any) => {
 		url: '/detail/mod',
 		method: 'PUT',
 		data
+	})
+}
+
+export const getKeywords = (params?: { name: string }) => {
+	return request({
+		url: '/keyword/list',
+		method: 'GET',
+		params
+   })
+}
+
+export const getUserNum = () => {
+	return request({
+		url: '/user/usernum',
+		method: 'GET',
+   })
+}
+
+export const getWebBrowse = () => {
+	return request({
+		url: '/traffic/list',
+		method: 'GET'
+	})
+}
+
+export const updateBanner = (data: any) => {
+	return request({
+		url: '/banner/update',
+		method: 'PUT'
 	})
 }

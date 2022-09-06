@@ -9,7 +9,9 @@ specifiers:
   '@typescript-eslint/parser': ^5.30.6
   '@vitejs/plugin-vue': ^2.3.3
   axios: ^0.27.2
+  cropperjs: ^1.5.12
   dayjs: ^1.11.3
+  echarts: ^5.3.3
   element-plus: ^2.2.9
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
@@ -31,7 +33,6 @@ specifiers:
   vite: ^2.9.9
   vite-plugin-svg-icons: ^2.0.1
   vue: ^3.2.25
-  vue-cropper: ^1.0.4
   vue-router: ^4.1.2
   vue-tsc: ^0.34.7
 
@@ -48,7 +49,9 @@ devDependencies:
   '@typescript-eslint/parser': 5.30.6_4x5o4skxv6sl53vpwefgt23khm
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
   axios: 0.27.2
+  cropperjs: 1.5.12
   dayjs: 1.11.3
+  echarts: 5.3.3
   element-plus: 2.2.9_vue@3.2.37
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
@@ -68,7 +71,6 @@ devDependencies:
   unplugin-vue-components: 0.21.1_vite@2.9.14+vue@3.2.37
   vite: 2.9.14_sass@1.53.0
   vite-plugin-svg-icons: 2.0.1_vite@2.9.14
-  vue-cropper: 1.0.4
   vue-router: 4.1.2_vue@3.2.37
   vue-tsc: 0.34.17_typescript@4.7.4
 
@@ -876,6 +878,10 @@ packages:
       vary: 1.1.2
     dev: true
 
+  /cropperjs/1.5.12:
+    resolution: {integrity: sha512-re7UdjE5UnwdrovyhNzZ6gathI4Rs3KGCBSc8HCIjUo5hO42CtzyblmWLj6QWVw7huHyDMfpKxhiO2II77nhDw==}
+    dev: true
+
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1076,6 +1082,13 @@ packages:
       dom-serializer: 1.4.1
       domelementtype: 2.3.0
       domhandler: 4.3.1
+    dev: true
+
+  /echarts/5.3.3:
+    resolution: {integrity: sha512-BRw2serInRwO5SIwRviZ6Xgm5Lb7irgz+sLiFMmy/HOaf4SQ+7oYqxKzRHAKp4xHQ05AuHw1xvoQWJjDQq/FGw==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.3.2
     dev: true
 
   /element-plus/2.2.9_vue@3.2.37:
@@ -3407,6 +3420,10 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
+  /tslib/2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: true
+
   /tsutils/3.21.0_typescript@4.7.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -3666,10 +3683,6 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vue-cropper/1.0.4:
-    resolution: {integrity: sha512-tzsx6iBAjIJpqoFXcNtmCWmVNAJkv6VtQE16zRlnZGyl4lIrGYZAhLkvJAMM41quJ0UzAWiMapNtF0oZ3cWYXw==}
-    dev: true
-
   /vue-demi/0.13.4_vue@3.2.37:
     resolution: {integrity: sha512-KP4lq9uSz0KZbaqCllRhnxMV3mYRsRWJfdsAhZyt5bV5O1RTpoeDptBRV9NOa/JgOpfaA9ane88VF7OjWNK/DA==}
     engines: {node: '>=12'}
@@ -3779,4 +3792,10 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /zrender/5.3.2:
+    resolution: {integrity: sha512-8IiYdfwHj2rx0UeIGZGGU4WEVSDEdeVCaIg/fomejg1Xu6OifAL1GVzIPHg2D+MyUkbNgPWji90t0a8IDk+39w==}
+    dependencies:
+      tslib: 2.3.0
     dev: true

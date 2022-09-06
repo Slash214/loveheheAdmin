@@ -42,6 +42,7 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElUpload: typeof import('element-plus/es')['ElUpload']
+    LineChart: typeof import('./components/LineChart/index.vue')['default']
     Loading: typeof import('./components/Loading/index.vue')['default']
     Markdown: typeof import('./components/Markdown/index.vue')['default']
     Modal: typeof import('./components/Modal/index.vue')['default']

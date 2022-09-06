@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { ElMessage } from 'element-plus'
 
-
-const baseURL = import.meta.env.VITE_BASE_URL
+// import.meta.env.VITE_BASE_URL
+const baseURL = 'https://lovehaha.cn/api'
 
 // 创建实例
 const service: AxiosInstance = axios.create({

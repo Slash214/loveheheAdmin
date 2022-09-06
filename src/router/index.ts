@@ -2,7 +2,7 @@
 
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router'
 import NProgress from '@/utils/nprogress'
-import {  System, Dashboard, Demo, AsyncRooutes } from './models'
+import {  System, Dashboard, AsyncRooutes } from './models'
 
 
 const routes: Array<RouteRecordRaw> = [

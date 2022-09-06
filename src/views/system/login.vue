@@ -5,51 +5,55 @@
         <img src="@/assets/undraw_Color_palette_re_dwy7.png" class="imgs" />
       </div>
       <div class="right">
-        <h1>Vite Vue Admin</h1>
+        <h1>爱呵呵资源网站</h1>
         <el-input placeholder="super" size="large" v-model="username"></el-input>
         <el-input placeholder="123456" type="password" size="large" v-model="password"></el-input>
-        <el-button type="primary" size="large" @click="sumbit" >登录</el-button>
+        <el-button type="primary" size="large" @click="sumbit">登录</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue"
+import { onMounted, onUnmounted, ref } from 'vue'
 import userHook from '@/hooks/user'
-
-const username = ref<string>("")
-const password = ref<string>("")
+import { adminLogin } from '@/api'
+import { ElMessage } from 'element-plus'
+const username = ref<string>('')
+const password = ref<string>('')
 
 onMounted(() => {
-	window.addEventListener('keydown', keyDown)
+  window.addEventListener('keydown', keyDown)
 })
 
 onUnmounted(() => {
-	window.removeEventListener('keydown', keyDown, false)
+  window.removeEventListener('keydown', keyDown, false)
 })
 
-const sumbit = () => {
-    console.log('sumit')
-	if (!username.value || !password.value) return
+const sumbit = async () => {
+  if (!username.value || !password.value) return
+  const { data, code, message } = await adminLogin({
+    username: username.value,
+    password: password.value,
+  })
 
-  if (username.value === 'super' && password.value === '123456') {
-    userHook.setToken('$$$$$$$TOKEN$$$$$$$')
-    userHook.setUser({
-      avatar: 'http://img.pinkyang.cn/2021.06.20-myhead.jpg',
-      nickname: '爱呵呵'
-    })
-		location.reload()
-	}
+  if (code !== 200) {
+    ElMessage.error(message)
+    return
+  }
+
+  ElMessage.success('登陆成功!正在跳转...')
+  userHook.setToken('$$$$$$$TOKEN$$$$$$$')
+  userHook.setUser(data)
+  await new Promise((r) => setTimeout(r, 800))
+  location.reload()
 }
 
 const keyDown = (e: any) => {
-	console.log('进入了')
-	if (e.keyCode === 13) {
-		sumbit()
-	}
+  if (e.keyCode === 13) {
+    sumbit()
+  }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -59,7 +63,7 @@ const keyDown = (e: any) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("@/assets/login_bg.b490478a.jpg") no-repeat;
+  background: url('@/assets/login_bg.b490478a.jpg') no-repeat;
   background-size: cover;
   zoom: 1;
   z-index: -10;
@@ -97,7 +101,6 @@ const keyDown = (e: any) => {
       .el-button {
         margin-top: 30px;
         width: 100%;
-		
       }
     }
   }
