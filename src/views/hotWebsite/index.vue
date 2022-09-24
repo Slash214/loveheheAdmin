@@ -23,7 +23,7 @@
         <template #default="scope">
           <el-image
             style="width: 100px; height: 100px"
-            :src="scope.row.icon"
+            :src="BASE_IMG_URL + scope.row.icon"
             fit="cover"
           ></el-image>
         </template>
@@ -88,6 +88,7 @@
 import { addWebSite, deletWebSite, getTag, getWebSite, updateWebSite } from '@/api'
 import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
+import { BASE_IMG_URL } from '@/constant'
 
 type tags = {
   ago: string
@@ -203,11 +204,10 @@ const sumbit = async () => {
   if (params.title && params.desc && params.icon && params.url) {
     const { data, code, message } = await addWebSite(params)
     ElMessage.success(message)
+    
+    resteParams()
     changeIsvisible()
-    setTimeout(() => {
-      getList(state.currentValue)
-    }, 500)
-    // console.log(data)
+    getList(state.currentValue)
   }
 }
 
@@ -239,6 +239,8 @@ const onCancel = () => {
   resteParams()
   changeIsvisible()
 }
+
+
 
 const resteParams = () => {
   params.desc = ''

@@ -1,6 +1,14 @@
 <template>
   <div class="add">
     <el-button type="primary" @click="createNew">新建文章</el-button>
+    <el-input
+      v-model="state.keyword"
+      placeholder="搜索软件"
+      :prefix-icon="Search"
+      @change="findOneList"
+      @clear="getListData"
+      clearable
+    />
   </div>
   <div class="list">
     <el-table :data="state.list" border v-loading="state.load">
@@ -13,7 +21,10 @@
       <el-table-column prop="remake" label="评论数" width="80" />
       <el-table-column label="封面" width="200" align="center">
         <template #default="scope">
-          <el-image :src="scope.row.cover"></el-image>
+          <el-image
+            :src="scope.row.cover.includes('//') ? scope.row.cover : BASE_IMG_URL + scope.row.cover"
+          >
+          </el-image>
         </template>
       </el-table-column>
       <el-table-column prop="title" label="标题" />
@@ -52,7 +63,7 @@
         :autosize="{ maxRows: 3 }"
         v-model="data.content"
       ></el-input>
-      <el-select v-model="data.type"  placeholder="请选择软件类型">
+      <el-select v-model="data.type" placeholder="请选择软件类型">
         <el-option
           v-for="item in options"
           :key="item.label"
@@ -64,7 +75,7 @@
       <el-input placeholder="输入标签 使用-去分割多个标签" v-model="data.label"></el-input>
       <div class="crop">
         <p class="mr20" v-if="data.cover">✅ 已上传图片</p>
-        <Cropper :cropper-height="180" :cropper-width="250" @upload-success="getImage"></Cropper>
+        <Cropper :cropper-height="180" :cropper-width="290" @upload-success="getImage"></Cropper>
       </div>
       <div class="bottom mt20">
         <el-button type="primary" @click="createArticle" v-if="flag === 'create'">确认</el-button>
@@ -75,18 +86,21 @@
 </template>
 
 <script setup lang="ts">
-import { getSoftList } from '@/api'
+import { getSoftList, searchKeyword } from '@/api'
 import { formatTime } from '@/utils/time'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { addSoft, updateSoft } from '@/api'
 import { ElMessage } from 'element-plus'
+import { BASE_IMG_URL } from '@/constant'
+import { Search } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const state = reactive({
   total: 0,
   list: [],
   load: true,
+  keyword: ''
 })
 
 const flag = ref<string>('create')
@@ -161,6 +175,7 @@ const resetData = () => {
   data.label = ''
   data.title = ''
   data.type = ''
+
 }
 
 const onCancel = () => {
@@ -192,7 +207,6 @@ const createArticle = async () => {
 }
 
 const updateArticle = async () => {
-
   if (!soft_id.value) return
   if (!data.title) return
   if (!data.content) return
@@ -200,7 +214,7 @@ const updateArticle = async () => {
   if (!data.label) return
   if (!data.type) return
 
-  let item = {...data, ...{ id: soft_id.value }}
+  let item = { ...data, ...{ id: soft_id.value } }
   const { code, message } = await updateSoft(item)
 
   if (code === 200) {
@@ -216,10 +230,9 @@ const getImage = (url: string) => {
   data.cover = url
 }
 
-
 const createNew = () => {
   changeIsVisible()
-  flag.value = 'create' 
+  flag.value = 'create'
 }
 
 const updateNew = (item: any) => {
@@ -235,13 +248,42 @@ const updateNew = (item: any) => {
   data.title = item.title
 }
 
+
+const findOneList = async () => {
+  console.warn('搜索的', state.keyword)
+  if (!state.keyword) return
+  state.load = true
+  pageIndex.value = 1
+  state.list = []
+
+  const { data, code, message, total = 0 } = await searchKeyword({
+    keyword: state.keyword,
+    pageIndex: pageIndex.value,
+    pageSize: pageSize.value
+  })
+
+  state.load = false
+  if (code !== 200) {
+    ElMessage.error(message)
+    state.list = []
+    state.load = false
+  }
+
+  state.list = data
+  state.total = total
+  console.log(data)
+}
+
 </script>
-
-
 
 <style scoped lang="scss">
 .add {
   margin-bottom: 20px;
+  @include flex();
+  .el-input {
+    margin-left: 20px;
+    width: 280px;
+  }
 }
 .list {
   .pagination {

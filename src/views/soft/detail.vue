@@ -33,7 +33,7 @@ import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
-import ItemVue from '@/layout/Tabs/Item.vue'
+import { UPLOAD_URL, BASE_IMG_URL } from '@/constant'
 
 const router = useRouter()
 const route = useRoute()
@@ -127,9 +127,8 @@ const onUploadImg = async (files: Array<File>, callback: (urls: Array<string>) =
       return new Promise((rev, rej) => {
         const form = new FormData()
         form.append('file', file)
-
         axios
-          .post('https://lovehaha.cn/api/qiniu', form, {
+          .post(UPLOAD_URL, form, {
             headers: { 'Content-Type': 'multipart/form-data' },
           })
           .then((res) => rev(res))
@@ -138,7 +137,7 @@ const onUploadImg = async (files: Array<File>, callback: (urls: Array<string>) =
 	})
 	)
 	// console.log(res)
-	callback(res.map((item: any) => item.data.data.url))
+	callback(res.map((item: any) => BASE_IMG_URL + item.data.data.url))
 }
 </script>
 

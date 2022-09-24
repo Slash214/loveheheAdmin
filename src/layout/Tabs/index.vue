@@ -1,6 +1,11 @@
 <template>
   <div class="tabs">
-    <el-scrollbar class="scrollbar-container" ref="scrollbarDom" @wheel.native.passive="handleWhellScroll" @scroll="handleScroll">
+    <el-scrollbar
+      class="scrollbar-container"
+      ref="scrollbarDom"
+      @wheel.native.passive="handleWhellScroll"
+      @scroll="handleScroll"
+    >
       <Items
         :list="val"
         v-for="(val, key) of state.menuList"
@@ -21,11 +26,19 @@
         <template #dropdown>
           <el-dropdown-menu>
             <!-- <el-dropdown-item class="tab" :icon="RefreshLeft" @click="pageReload">刷新当前标签</el-dropdown-item> -->
-            <el-dropdown-item :icon="CircleClose" @click="currentDisabled">关闭当前路由</el-dropdown-item>
-            <el-dropdown-item :icon="CircleClose" :disabled="state.menuList.length < 3" @click="closeOtherRoute"
+            <el-dropdown-item :icon="CircleClose" @click="currentDisabled"
+              >关闭当前路由</el-dropdown-item
+            >
+            <el-dropdown-item
+              :icon="CircleClose"
+              :disabled="state.menuList.length < 3"
+              @click="closeOtherRoute"
               >关闭其他路由</el-dropdown-item
             >
-            <el-dropdown-item :icon="CircleClose" :disabled="state.menuList.length <= 1" @click="closeAllRoute"
+            <el-dropdown-item
+              :icon="CircleClose"
+              :disabled="state.menuList.length <= 1"
+              @click="closeAllRoute"
               >关闭全部路由</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -36,26 +49,31 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, watch } from "vue"
-import { ArrowDown, CircleClose, RefreshLeft } from "@element-plus/icons-vue"
-import Items from "@/layout/Tabs/Item.vue"
-import { ElScrollbar } from "element-plus/es"
-import tabsHook from "./tabsHook"
-import { useRoute, useRouter } from "vue-router"
+import { nextTick, onMounted, reactive, watch } from 'vue'
+import { ArrowDown, CircleClose, RefreshLeft } from '@element-plus/icons-vue'
+import Items from '@/layout/Tabs/Item.vue'
+import { ElScrollbar } from 'element-plus/es'
+import tabsHook from './tabsHook'
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 
-const state = reactive({
+const state: {
+  scrollbarDom: any;
+  scrollLeft: number;
+  menuList: any
+
+} = reactive({
   scrollLeft: 0,
   scrollbarDom: null,
   menuList: tabsHook.getItem(),
 })
 const defaultMenu = {
-  path: "/dashboard",
-  meta: { title: "首页", hideColse: true },
+  path: '/dashboard',
+  meta: { title: '首页', hideColse: true },
 }
-let activeMenu = reactive({ path: "" })
+let activeMenu = reactive({ path: '' })
 
 onMounted(() => {
   if (state.menuList.length === 0) {
@@ -92,7 +110,7 @@ const addMenu = (menu: any) => {
 }
 
 const delMenu = (menu: any) => {
-  console.warn("触发了删除")
+  console.warn('触发了删除')
   let index = 0
   if (!menu.meta.hideClose) {
     // if (menu.meta.cache && menu.name) {
@@ -119,9 +137,13 @@ const initMenu = (menu: any) => {
 const setPosition = () => {
   if (state.scrollbarDom) {
     const domBox = {
-      scrollbar: state.scrollbarDom.scrollbar$.querySelector(".el-scrollbar__wrap ") as HTMLDivElement,
-      activeDom: state.scrollbarDom.scrollbar$.querySelector(".active") as HTMLDivElement,
-      activeFather: state.scrollbarDom.scrollbar$.querySelector(".el-scrollbar__view") as HTMLDivElement,
+      scrollbar: state.scrollbarDom.scrollbar$.querySelector(
+        '.el-scrollbar__wrap '
+      ) as HTMLDivElement,
+      activeDom: state.scrollbarDom.scrollbar$.querySelector('.active') as HTMLDivElement,
+      activeFather: state.scrollbarDom.scrollbar$.querySelector(
+        '.el-scrollbar__view'
+      ) as HTMLDivElement,
     }
     let hasDoms = true
     Object.keys(domBox).forEach((dom) => {
@@ -133,7 +155,11 @@ const setPosition = () => {
       activeDom: domBox.activeDom.getBoundingClientRect(),
       activeFather: domBox.activeFather.getBoundingClientRect(),
     }
-    const num = domData.activeDom.x - domData.activeFather.x + (1 / 2) * domData.activeDom.width - (1 / 2) * domData.scrollbar.width
+    const num =
+      domData.activeDom.x -
+      domData.activeFather.x +
+      (1 / 2) * domData.activeDom.width -
+      (1 / 2) * domData.scrollbar.width
     domBox.scrollbar.scrollLeft = num
   }
 }

@@ -1,7 +1,10 @@
 <template>
   <el-container style="height: 100vh">
     <el-aside :width="isCollapse ? '60px' : '220px'" :class="isCollapse ? 'hide-aside' : 'show-side'">
-      <div class="logo">LOGO</div>
+      <div class="logo">
+        <img src="@/assets/logo.png"  />
+        <p v-if="!isCollapse">斜杠boy</p>
+      </div>
       <Menus />
     </el-aside>
     <el-container>
@@ -53,6 +56,16 @@ const { isCollapse } = storeToRefs(appState())
     align-items: center;
     justify-content: center;
     border-right: 1px solid #eaf0f1;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    p {
+      transition: all .3s ease-in-out;
+      padding-left: 10px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
   }
 }
 .el-main {

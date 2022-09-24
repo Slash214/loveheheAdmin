@@ -6,7 +6,7 @@ const System: Array<RouteRecordRaw> = [
 		path: '/system',
 		component: Layout,
 		redirect: '/404',
-		meta: { title: '系统目录', showMenu: true, icon: 'icon-dicengjiagou' },
+		meta: { title: '系统目录', showMenu: false, icon: 'icon-dicengjiagou' },
 		children: [
 			{
 				path: '/404',

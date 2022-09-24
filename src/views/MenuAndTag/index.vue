@@ -58,7 +58,7 @@ const getData = async () => {
   dynamicTags.value = data
 }
 
-const handleChange = (name: string) => {
+const handleChange = (name: any) => {
   console.log('name', name)
   activeName.value = name
   getData()

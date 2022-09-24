@@ -1,37 +1,43 @@
 <template>
   <el-scrollbar>
-    <el-menu router class="layout-menu" 
-    :collapse="isCollapse" 
-    :collapse-transition="false"
-    :default-active="activeMenu"
+    <el-menu
+      router
+      class="layout-menu"
+      :collapse="isCollapse"
+      :collapse-transition="false"
+      :default-active="activeMenu"
     >
-      <menu-item :class="isCollapse ? 'menuItems' : '' " v-for="(item, key) in allRoutes" :menu="item" :key="key" />
+      <menu-item
+        :class="isCollapse ? 'menuItems' : ''"
+        v-for="(item, key) in allRoutes"
+        :menu="item"
+        :key="key"
+      />
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script setup lang="ts">
-import MenuItem from "./MenuItem.vue"
-import { useRoute, useRouter } from "vue-router"
-import { storeToRefs } from "pinia"
-import { appState } from "@/store/app"
-import { computed } from "vue"
+import MenuItem from './MenuItem.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { appState } from '@/store/app'
+import { computed } from 'vue'
 const { isCollapse } = storeToRefs(appState())
 
 const router = useRouter()
 const route = useRoute()
 
-// console.error(router.options.routes)
+console.error(router.options.routes)
 const allRoutes = router.options.routes.filter((e: any) => {
   return e.meta.showMenu && e.path !== '/xq'
 })
 
-const activeMenu = computed(() => {
+const activeMenu: any = computed(() => {
   const { meta, path } = route
   if (meta.activeMenu) return meta.activeMenu
   return path
 })
-
 
 // console.error("allRoutes", allRoutes)
 </script>
@@ -111,6 +117,5 @@ const activeMenu = computed(() => {
       }
     }
   }
-
 }
 </style>

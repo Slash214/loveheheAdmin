@@ -36,7 +36,7 @@ const initChart = () => {
 
   chart.setOption({
     title: {
-      text: '用户搜索关键字折线图',
+      text: '用户搜索关键字',
       x: 'center'
     },
     xAxis: {

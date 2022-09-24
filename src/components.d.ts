@@ -11,17 +11,15 @@ declare module '@vue/runtime-core' {
     Cropper: typeof import('./components/Cropper/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
-    ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
@@ -52,6 +50,7 @@ declare module '@vue/runtime-core' {
     Upload: typeof import('./components/Upload/index.vue')['default']
   }
   export interface ComponentCustomProperties {
+    vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

@@ -41,6 +41,14 @@ export const getBanner = () => {
    })
 }
 
+export const createBanner = (data: any) => {
+	return request({
+		url: '/banner/create',
+		method: 'POST',
+		data
+	})
+}
+
 export const getTag = (params?: { type: string }) => {
 	return request({
 		url: '/tag/list',
@@ -121,10 +129,11 @@ export const getKeywords = (params?: { name: string }) => {
    })
 }
 
-export const getUserNum = () => {
+export const getUserNum = (params: any) => {
 	return request({
 		url: '/user/usernum',
 		method: 'GET',
+		params
    })
 }
 
@@ -138,6 +147,15 @@ export const getWebBrowse = () => {
 export const updateBanner = (data: any) => {
 	return request({
 		url: '/banner/update',
-		method: 'PUT'
+		method: 'PUT',
+		data
 	})
+}
+
+export const searchKeyword = (params: any) => {
+	return request({
+		url: '/software/search',
+		method: 'GET',
+		params
+   })
 }
