@@ -19,7 +19,7 @@ export default defineConfig({
     }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
-    }),  
+    }),
     Components({
       resolvers: [ElementPlusResolver()],
       dirs: ['src/components'],
@@ -29,11 +29,13 @@ export default defineConfig({
       exclude: [/[\/]node_modules[\/]/, /[\/].git[\/]/, /[\/].nuxt[\/]/],
     })
   ],
-  server: {
-    host: '0.0.0.0',
-    port: 3100,
-    cors: true,
-    open: true,
+  base: './',
+  resolve: {
+    alias: {
+      '@': pathReslove('./src'),
+      views: pathReslove('./src/views'),
+      asssets: pathReslove('./src/assets')
+    }
   },
   css: {
     preprocessorOptions: {
@@ -46,10 +48,10 @@ export default defineConfig({
   esbuild: {
     drop: ['console', 'debugger']
   },
-  resolve: {
-    alias: {
-      '@': pathReslove('./src'),
-      views: pathReslove('./src/views')
-    }
+  server: {
+    host: '0.0.0.0',
+    port: 3100,
+    cors: true,
+    open: true,
   },
 })

@@ -11,7 +11,7 @@ const System: Array<RouteRecordRaw> = [
 			{
 				path: '/404',
 				component: () => import('@/views/system/404.vue'),
-				meta: { title: '404页面',  }
+				meta: { title: '404页面', }
 			},
 		]
 	},
@@ -24,8 +24,8 @@ const System: Array<RouteRecordRaw> = [
 	{
 		path: '/:pathMatch(.*)',
 		meta: {},
-		redirect: '/404',
-	  },
+		redirect: '/system',
+	},
 ]
 
 export default System

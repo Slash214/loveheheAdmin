@@ -6,8 +6,8 @@ import {  System, Dashboard, AsyncRooutes } from './models'
 
 
 const routes: Array<RouteRecordRaw> = [
-    ...Dashboard,
     ...System,
+    ...Dashboard,
     ...AsyncRooutes
 ]
 

@@ -47,6 +47,8 @@ import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import { ElMessage } from 'element-plus'
 import axios from 'axios'
+import { UPLOAD_URL } from '@/constant'
+
 
 const props = defineProps({
   modelValue: {
@@ -132,7 +134,7 @@ const saveAsModel = async () => {
   data.append('file', file)
   // https://lovehaha.cn/api/qiniu
   // http://yjpsix.com/img/qiniu
-  const result = await axios.post('https://yjpsix.com/img/qiniu', data, {
+  const result = await axios.post(UPLOAD_URL, data, {
     headers: { 'Contnet-Type': 'multipart/form-data' }
   })
 

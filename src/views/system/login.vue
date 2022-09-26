@@ -2,7 +2,7 @@
   <div class="login">
     <div class="box">
       <div class="left">
-        <img src="@/assets/undraw_Color_palette_re_dwy7.png" class="imgs" />
+        <img src="@/assets/bg.png" class="imgs" />
       </div>
       <div class="right">
         <h1>爱呵呵资源网站</h1>
